@@ -1,0 +1,11 @@
+{
+  "name": "quiz",
+  "version": "1.0.0",
+  "description": "quiz game",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Kristoffer Djupsjo",
+  "license": "ISC"
+}
