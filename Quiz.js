@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Question from './Question.jsx';
-import Counter from './Assets/Counter.jsx';
 import AnswerOption from './Assets/AnswerOption.jsx';
 
 
@@ -15,9 +14,11 @@ class Quiz extends Component {
     renderAnswer(key) {
         return(
             <AnswerOption
+            key={key.type}
             answerType={key.type}
             onAnswerSelected={this.props.onAnswerSelected}
             answer={this.props.answer}
+            content={key.content}
             ></AnswerOption>
         );
     }
@@ -25,9 +26,7 @@ class Quiz extends Component {
     render(){
         return(
             <div>
-                <h1>Hello world!</h1>
-                <Counter current={1} totalAmount={10} />
-                <Question questionLabel={this.props.test}/>
+                <Question questionLabel={this.props.question}/>
 
                 <ul>
                 {this.props.answerOptions.map(this.renderAnswer)}

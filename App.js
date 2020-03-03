@@ -1,7 +1,13 @@
 import React, {Component} from 'React';
 import Quiz from './Quiz.js';
 import quizQuestions from './api/questions';
-
+import ResultBox from './Assets/ResultBox.jsx';
+import results from './api/result';
+import _ from 'lodash';
+import Counter from './Assets/Counter.jsx';
+import update from 'react-addons-update';
+import Button from './Buttons/button/button.jsx';
+import Timer from './Assets/Timer.jsx';
 
 class App extends Component {
 
@@ -10,8 +16,8 @@ class App extends Component {
 
         this.state = {
             counter: 0,
-            questionId: 1,
             question: '',
+            activeQuestions: [],
             answerOptions: [],
             answer: '',
             answersCount: {
@@ -19,52 +25,98 @@ class App extends Component {
               microsoft: 0,
               sony: 0
             },
-            result: '', 
-            test: 'hejhej'
+            result: ''
            };
-    }
 
+        this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+        this.nextQuestion = this.nextQuestion.bind(this);
+    };
 
-    componentWillMount() {
-        const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));  
-        console.log(this.props.test)
+    componentDidMount() {
+      const shuffledQuestions = _.shuffle(quizQuestions).slice(0, 3);
+      const shuffledAnswerOptions = shuffledQuestions.map((question) => _.shuffle(question.answers));  
+        
         this.setState({
-          question: quizQuestions[0].question,
-          answerOptions: shuffledAnswerOptions[0]
+          question: shuffledQuestions[0].question,
+          answerOptions: shuffledAnswerOptions[0],
+          activeQuestions: shuffledQuestions
         });
-    }
-
-    shuffleArray(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-          // Pick a remaining element...
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-          // And swap it with the current element.
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
-        }
-        return array;
+    };
+      handleAnswerSelected(event) {
+        this.setState({
+          answer: event.currentTarget.value
+        });
       };
+
+      nextQuestion() {
+        const counter = this.state.counter + 1;
+        const activeQuestions = this.state.activeQuestions;
+
+        if(counter < activeQuestions.length) {
+          const answer = this.state.answer.toLowerCase();
+         
+          const updatedAnswerCount = update(this.state.answersCount, {
+            [answer]: {$apply: function (currentValue) { return currentValue + 1;}}
+          });
+
+          this.setState({
+            answersCount: updatedAnswerCount,
+            counter: counter,
+            question: activeQuestions[counter].question,
+            answerOptions: activeQuestions[counter].answers,
+            answer: ''
+          });
+        } 
+        else {
+          this.finishQuiz();
+        }
+        
+      }
+      finishQuiz() {
+        const answerKeys = Object.keys(this.state.answersCount);
+        const answerList = answerKeys.map((key) => this.state.answersCount[key]); 
+        const maxValue = Math.max.apply(Math, answerList);
+        const highestScoringType = answerKeys.filter((key) => this.state.answersCount[key] == maxValue)[0];
+        const result = results.filter((r) => r.type.toLowerCase() == highestScoringType);
+      
+        this.setState({
+          result: result[0].content
+        });
+      }
 
 
       render() {
         return (
           <div className="App">
-            <div className="App-header">
-              <h2>React Quiz</h2>
-            </div>
-            <Quiz
-              answer={this.state.answer}
-              answerOptions={this.state.answerOptions}
-              questionId={this.state.questionId}
-              question={this.state.question}
-              questionTotal={quizQuestions.length}
-              onAnswerSelected={this.handleAnswerSelected}
-            />
+
+            <h1>Quizzet</h1>
+            <Counter current={this.state.counter} totalAmount={this.state.activeQuestions.length} />
+
+            {this.state.result == '' ?             
+              <div >
+                <Quiz
+                  answer={this.state.answer}
+                  answerOptions={this.state.answerOptions}
+                  question={this.state.question}
+                  onAnswerSelected={this.handleAnswerSelected}
+                />
+
+
+                <div style={{width: "200px"}}>
+                  <Button
+                    onClick={this.nextQuestion}
+                    disabled={this.state.answer == ''}>
+                    
+                    Nästa fråga
+                  </Button>
+                </div>
+              </div> : 
+              <ResultBox content={this.state.result}>
+              </ResultBox> }
+
+              <Timer nextQuestion={this.nextQuestion}/>
           </div>
+
         )
       }
 }

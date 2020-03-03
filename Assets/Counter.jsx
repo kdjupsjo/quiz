@@ -22,7 +22,7 @@ class Counter extends Component {
     render() {
         return(
             <div>
-                <CurrentQuestion>{this.props.current}</CurrentQuestion>
+                <CurrentQuestion>{this.props.current + 1}</CurrentQuestion>
                 / 
                 <TotalAmount>{this.props.totalAmount}</TotalAmount>
             

@@ -13,8 +13,9 @@ class AnswerOption extends Component {
                     <Checkbox 
                         checked = {this.props.answerType === this.props.answer}
                         onChange = {this.props.onAnswerSelected}
+                        value = {this.props.answerType}
                         />
-                    <span style={{ marginLeft: 8 }}>Answer 1</span>
+                    <span style={{ marginLeft: 8 }}>{this.props.content}</span>
                 </label>
             
             </li>

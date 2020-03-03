@@ -7,6 +7,7 @@ module.exports = {
       path: path.join(__dirname, '/bundle'),
       filename: 'index_bundle.js'
    },
+   devtool: 'eval-source-map',
    devServer: {
       inline: true,
       port: 8001
