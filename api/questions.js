@@ -3,15 +3,23 @@ var quizQuestions = [
         question: "What franchise would you rather play a game from?",
         answers: [
             {
-                type: "Microsoft",
+                id: 2,
+                type: "false",
                 content: "Halo"
             },
             {
-                type: "Nintendo",
+                id: 1,
+                type: "false",
                 content: "Pokemon"
             },
             {
-                type: "Sony",
+                id: 3,
+                type: "true",
+                content: "Uncharted"
+            },
+            {
+                id: 4,
+                type: "false",
                 content: "Uncharted"
             }
         ]
@@ -20,16 +28,24 @@ var quizQuestions = [
         question: "Which console would you prefer to play with friends?",
         answers: [
             {
-                type: "Microsoft",
+                id: 2,
+                type: "false",
                 content: "X-Box"
             },
             {
-                type: "Nintendo",
+                id: 1,           
+                type: "false",
                 content: "Nintendo 64"
             },
             {
-                type: "Sony",
+                id: 3,
+                type: "true",
                 content: "Playstation 1"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Uncharted"
             }
         ]
     },
@@ -37,16 +53,24 @@ var quizQuestions = [
         question: "Which of these racing franchises would you prefer to play a game from?",
         answers: [
             {
-                type: "Microsoft",
+                id: 2,
+                type: "false",
                 content: "Forza"
             },
             {
-                type: "Nintendo",
+                id: 1,
+                type: "false",
                 content: "Mario Kart"
             },
             {
-                type: "Sony",
+                id: 3,
+                type: "true",
                 content: "Gran Turismo"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Uncharted"
             }
         ]
     },
@@ -54,16 +78,24 @@ var quizQuestions = [
         question: "Which of these games do you think is best?",
         answers: [
             {
-                type: "Microsoft",
+                id: 2,
+                type: "false",
                 content: "BioShock"
             },
             {
-                type: "Nintendo",
+                id: 1,
+                type: "false",
                 content: "The Legend of Zelda: Ocarina of Time"
             },
             {
-                type: "Sony",
+                id: 3,
+                type: "true",
                 content: "Final Fantasy VII"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Uncharted"
             }
         ]
     },
@@ -71,16 +103,24 @@ var quizQuestions = [
         question: "What console would you prefer to own?",
         answers: [
             {
-                type: "Microsoft",
+                id: 2,
+                type: "false",
                 content: "X-Box One"
             },
             {
-                type: "Nintendo",
+                id: 1,
+                type: "false",
                 content: "Wii U"
             },
             {
-                type: "Sony",
+                id: 3,
+                type: "true",
                 content: "Playstation 4"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Uncharted"
             }
         ]
     }

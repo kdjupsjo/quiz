@@ -14,8 +14,8 @@ class Quiz extends Component {
     renderAnswer(key) {
         return(
             <AnswerOption
-            key={key.type}
-            answerType={key.type}
+            key={key.id}
+            answerType={key.id}
             onAnswerSelected={this.props.onAnswerSelected}
             answer={this.props.answer}
             content={key.content}

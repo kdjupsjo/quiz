@@ -11,7 +11,7 @@ class AnswerOption extends Component {
             <li>
                 <label>
                     <Checkbox 
-                        checked = {this.props.answerType === this.props.answer}
+                        checked = {this.props.answerType == this.props.answer}
                         onChange = {this.props.onAnswerSelected}
                         value = {this.props.answerType}
                         />

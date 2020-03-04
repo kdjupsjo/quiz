@@ -19,13 +19,27 @@ class Timer extends Component {
                 }))
             }
             if (seconds === 0) {
-                
-                this.props.nextQuestion();
+                setTimeout(this.props.nextQuestion(), 3000);
                 this.setState({
                     seconds: 15
                 });                
             } 
         }, 1000)
+    }
+
+    reset() {
+        setTimeout(
+            this.setState({
+                seconds: 15
+            }), 1000);
+    }
+
+    topuptime() {
+        const currentTime = this.state.seconds;
+
+        this.setState({
+            seconds: currentTime + 10
+        });
     }
 
     componentWillUnmount() {
@@ -37,8 +51,8 @@ class Timer extends Component {
         return (
             <div>
                 { seconds === 0
-                    ? <h1>Busted!</h1>
-                    : <h1>Time Remaining: {seconds < 10 ? `0${seconds}` : seconds}</h1>
+                    ? <h1>För långsam!</h1>
+                    : <h1>Tid kvar: {seconds < 10 ? `0${seconds}` : seconds}</h1>
                 }
             </div>
         )

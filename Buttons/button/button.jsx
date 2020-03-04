@@ -14,13 +14,16 @@ const StyledButton = styled.div`
         background-color: #35523d;
         border: 3px solid #35523d;
     }
+    :disabled {
+        background-color: #a1b5a7;
+    }
 `
 
-const Button = ({className, onClick, disabled, ...props}) => (
+const Button = ({className, onClick, ...props}) => (
     <StyledButton   className={className}
                     onClick={onClick}
-                    disabled={disabled}
-    >Nästa fråga</StyledButton>
+                    disabled={props.disabled.toString()== "true"}
+>{props.content} - {props.disabled.toString()}</StyledButton>
 )
 
 export default Button;
