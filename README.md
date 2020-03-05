@@ -9,6 +9,7 @@ Installation:
 2. Open Terminal / CMD 
 3. Run npm build 
 4. Run npm run dev 
+5. Create or remove questions in api/qustions.js (optional)
 
 Enjoy! 
 
