@@ -5,7 +5,6 @@ import ResultBox from './Assets/ResultBox.jsx';
 import results from './api/result';
 import _ from 'lodash';
 import Counter from './Assets/Counter.jsx';
-import update from 'react-addons-update';
 import Button from './Buttons/button/button.jsx';
 import Timer from './Assets/Timer.jsx';
 
@@ -26,17 +25,22 @@ class App extends Component {
       result: '',
       finalscore: 0,
       fiftyUsed: false,
-      topupTimeUsed: false 
+      topupTimeUsed: false
     };
     this.timer = React.createRef();
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
     this.fiftyfifty = this.fiftyfifty.bind(this);
     this.topupTime = this.topupTime.bind(this);
+    this.init = this.init.bind(this);
   };
 
   componentDidMount() {
-    const shuffledQuestions = _.shuffle(quizQuestions).slice(0, 3);
+    this.init();
+  };
+
+  init() {
+    const shuffledQuestions = _.shuffle(quizQuestions).slice(0, 10);
     const shuffledAnswerOptions = shuffledQuestions.map((question) => _.shuffle(question.answers));
 
     this.setState({
@@ -44,7 +48,8 @@ class App extends Component {
       answerOptions: shuffledAnswerOptions[0],
       activeQuestions: shuffledQuestions
     });
-  };
+  }
+
   handleAnswerSelected(event) {
     this.setState({
       answer: event.currentTarget.value
@@ -55,7 +60,6 @@ class App extends Component {
     const counter = this.state.counter + 1;
     const activeQuestions = this.state.activeQuestions;
     const answerId = this.state.answer;
-    //debugger;
 
     let correctAnswerCount = this.state.correctAnswerCount;
     let wrongAnswerCount = this.state.wrongAnswerCount;
@@ -77,7 +81,6 @@ class App extends Component {
         if (answer.type == 'false') {
           wrongAnswerCount++;
         }
-
       }
       if (counter == activeQuestions.length) {
         this.setState({
@@ -102,7 +105,8 @@ class App extends Component {
   }
 
   finishQuiz() {
-    let finalscore = Math.floor(this.state.correctAnswerCount / this.state.activeQuestions.length) * 100;
+    this.timer.current.clearInterval();
+    let finalscore = Math.floor((this.state.correctAnswerCount / this.state.activeQuestions.length) * 100);
     if (finalscore == 0) {
       finalscore++;
     }
@@ -121,11 +125,15 @@ class App extends Component {
   }
 
   fiftyfifty() {
+    if (this.state.fiftyUsed) {
+      return;
+    }
+
     let answerOptions = this.state.answerOptions;
     let correctAnswer = _.find(answerOptions, function (answer) {
       return answer.type == "true";
     });
-    answerOptions = _.remove(answerOptions, function(answer) {
+    answerOptions = _.remove(answerOptions, function (answer) {
       return answer.type == "false";
     });
 
@@ -146,13 +154,15 @@ class App extends Component {
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
-  topupTime(e){
+  topupTime(e) {
+
+    if (this.state.topupTimeUsed) {
+      return;
+    }
     this.setState({
       topupTimeUsed: true
     });
     this.timer.current.topuptime();
-
-    debugger;
   }
 
   render() {
@@ -171,33 +181,32 @@ class App extends Component {
               onAnswerSelected={this.handleAnswerSelected}
             />
 
+            <Button
+              onClick={this.nextQuestion}
+              content='Nästa fråga'
+              disabled={false}
+              lifeLine={false}
+              >
+            </Button>
 
-            <div style={{ width: "200px" }}>
-              <Button
-                onClick={this.nextQuestion}
-                content='Nästa fråga'
-                disabled={false}>                
-                  </Button>
-            </div>
-            <div style={{ width: "200px" }}>
-              <Button
-                onClick={this.fiftyfifty}
-                disabled={this.state.fiftyUsed}
-                content='50/50'>
-                
-                  </Button>
-            </div>
-            <div style={{ width: "200px" }}>
-              <Button
-                onClick={this.topupTime}
-                disabled={this.state.topupTimeUsed}
-                content='10+'>
-                  </Button>
-            </div>
+            <Button
+              onClick={this.fiftyfifty}
+              disabled={this.state.fiftyUsed}
+              lifeLine={true}
+              content='50/50'>
+
+            </Button>
+
+            <Button
+              onClick={this.topupTime}
+              disabled={this.state.topupTimeUsed}
+              lifeLine={true}
+              content='10+'>
+            </Button>
             <Timer ref={this.timer}
               nextQuestion={this.nextQuestion} />
           </div> :
-          <ResultBox 
+          <ResultBox
             content={this.state.result}
             score={this.state.finalscore}
             correct={this.state.correctAnswerCount}

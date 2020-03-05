@@ -1,129 +1,304 @@
 var quizQuestions = [
     {
-        question: "What franchise would you rather play a game from?",
+        question: "Högernationalisten Janez Jansa väntas bli vald till ny premiärminister. I vilket land?",
         answers: [
+            {
+                id: 1,
+                type: "true",
+                content: "Slovenien"
+            },
             {
                 id: 2,
                 type: "false",
-                content: "Halo"
-            },
-            {
-                id: 1,
-                type: "false",
-                content: "Pokemon"
+                content: "Kroatien"
             },
             {
                 id: 3,
-                type: "true",
-                content: "Uncharted"
+                type: "false",
+                content: "Montenegro"
             },
             {
                 id: 4,
                 type: "false",
-                content: "Uncharted"
+                content: "Nordmakedonien"
             }
         ]
     },
     {
-        question: "Which console would you prefer to play with friends?",
+        question: "På Thielska galleriet i Stockholm visas en stor utställning med fotografiska självporträtt av en av 1900-talets största konstnärer. Vem?",
         answers: [
             {
-                id: 2,
+                id: 1,
                 type: "false",
-                content: "X-Box"
+                content: "Frida Kahlo"
             },
             {
-                id: 1,           
+                id: 2,           
                 type: "false",
-                content: "Nintendo 64"
+                content: "Pablo Picasso"
             },
             {
                 id: 3,
                 type: "true",
-                content: "Playstation 1"
+                content: "Edvard Munch"
             },
             {
                 id: 4,
                 type: "false",
-                content: "Uncharted"
+                content: "Anders Zorn"
             }
         ]
     },
     {
-        question: "Which of these racing franchises would you prefer to play a game from?",
+        question: "Coronaviruset. Kryssningsfartyget Diamond Princess sattes i karantän sedan tio passagerare smittats. Var hölls fartyget isolerat?",
         answers: [
-            {
-                id: 2,
-                type: "false",
-                content: "Forza"
-            },
             {
                 id: 1,
                 type: "false",
-                content: "Mario Kart"
+                content: "Seoul, Sydkorea"
+            },
+            {
+                id: 2,
+                type: "false",
+                content: "Genua, Italien"
             },
             {
                 id: 3,
-                type: "true",
-                content: "Gran Turismo"
+                type: "false",
+                content: "Shanghai, Kina"
             },
             {
                 id: 4,
-                type: "false",
-                content: "Uncharted"
+                type: "true",
+                content: "Yokohama, Japan"
             }
         ]
     },
     {
-        question: "Which of these games do you think is best?",
+        question: "Politik. Nooshi Dadgostar blir sannolikt Vänsterpartiets nästa ordförande. Var är hon född?",
         answers: [
-            {
-                id: 2,
-                type: "false",
-                content: "BioShock"
-            },
             {
                 id: 1,
                 type: "false",
-                content: "The Legend of Zelda: Ocarina of Time"
+                content: "Vejbystrand"
+            },
+            {
+                id: 2,
+                type: "false",
+                content: "Hässleholm"
             },
             {
                 id: 3,
-                type: "true",
-                content: "Final Fantasy VII"
+                type: "false",
+                content: "Staffanstorp"
             },
             {
                 id: 4,
-                type: "false",
-                content: "Uncharted"
+                type: "true",
+                content: "Perstorp"
             }
         ]
     },
     {
-        question: "What console would you prefer to own?",
+        question: "Scen. Skådespelaren Olof Thunberg har avlidit. För alla barn är hans röst välbekant. Vilken figur förknippas han främst med?",
         answers: [
-            {
-                id: 2,
-                type: "false",
-                content: "X-Box One"
-            },
             {
                 id: 1,
                 type: "false",
-                content: "Wii U"
+                content: "Karlsson på taket"
+            },
+            {
+                id: 2,
+                type: "false",
+                content: "Agaton Sax"
             },
             {
                 id: 3,
                 type: "true",
-                content: "Playstation 4"
+                content: "Bamse"
             },
             {
                 id: 4,
                 type: "false",
-                content: "Uncharted"
+                content: "Alfons Åberg"
             }
         ]
-    }
+    },
+    {
+        question: "Resor. Hundratals svenska semesterfirare blev strandade på Gran Canaria. Varför?",
+        answers: [
+            {
+                id: 1,
+                type: "true",
+                content: "En sandstorm stängde flygplatsen"
+            },
+            {
+                id: 2,
+                type: "false",
+                content: "På grund av en flygstrejk"
+            },
+            {
+                id: 3,
+                type: "false",
+                content: "Man befarade coronavirus"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "En informationsmiss om avgångstiderna"
+            }
+        ]
+    },
+    {
+        question: "Ekonomi. En ny skatt har fått Bengt Lundin AB i Jössefors att varsla 27 anställda om uppsägning. Vad tillverkar de?",
+        answers: [
+            {
+                id: 1,
+                type: "false",
+                content: "Bensindunkar"
+            },
+            {
+                id: 2,
+                type: "true",
+                content: "Plastbärkassar"
+            },
+            {
+                id: 3,
+                type: "false",
+                content: "Munskydd"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Resväskor"
+            }
+        ]
+    },
+    {
+        question: "Världen. En undersökning visade att Sveriges anseende är högt världen över – utom i ett land. Vilket?",
+        answers: [
+            {
+                id: 1,
+                type: "false",
+                content: "USA"
+            },
+            {
+                id: 2,
+                type: "true",
+                content: "Polen"
+            },
+            {
+                id: 3,
+                type: "false",
+                content: "Thailand"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Danmark"
+            }
+        ]
+    },
+    {
+        question: "Sverige. Det debatterades om hur ebo-lagen ska tillämpas. Vilken lag är det?",
+        answers: [
+            {
+                id: 1,
+                type: "false",
+                content: "Lagen om ekologisk bomiljö"
+            },
+            {
+                id: 2,
+                type: "false",
+                content: "Lagen om enkel vårdbokning"
+            },
+            {
+                id: 3,
+                type: "true",
+                content: "Lagen om eget boende"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Lagen om europeisk bolagsbeskattning"
+            }
+        ]
+    },
+    {
+        question: "Sport. Armand Duplantis har satt världsrekord i stavhopp. Hur många gånger?",
+        answers: [
+            {
+                id: 1,
+                type: "false",
+                content: "En"
+            },
+            {
+                id: 2,
+                type: "true",
+                content: "Två"
+            },
+            {
+                id: 3,
+                type: "false",
+                content: "Tre"
+            },
+            {
+                id: 4,
+                type: "false",
+                content: "Fyra"
+            }
+        ]
+    },
+    {
+        question: "Vilken är den bästa staden?",
+        answers: [
+            {
+                id: 1,
+                type: "false",
+                content: "Göteborg"
+            },
+            {
+                id: 2,
+                type: "false",
+                content: "Stockholm"
+            },
+            {
+                id: 3,
+                type: "false",
+                content: "Enköping"
+            },
+            {
+                id: 4,
+                type: "true",
+                content: "Halmstad"
+            }
+        ]
+    }, 
+    {
+        question: "Hur gammal är Kristoffer Djupsjö?",
+        answers: [
+            {
+                id: 1,
+                type: "false",
+                content: "5"
+            },
+            {
+                id: 2,
+                type: "false",
+                content: "23"
+            },
+            {
+                id: 3,
+                type: "false",
+                content: "32"
+            },
+            {
+                id: 4,
+                type: "true",
+                content: "26"
+            }
+        ]
+    } 
   ];
   
   export default quizQuestions;

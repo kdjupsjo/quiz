@@ -1,5 +1,7 @@
-import React, {Component} from 'React';
-import styled from 'styled-components'; 
+import React, { Component } from 'React';
+import styled from 'styled-components';
+import Button from './../Buttons/button/button.jsx';
+
 
 const Box = styled.div`
     border: 3px solid #7dc791; 
@@ -27,7 +29,7 @@ class ResultBox extends Component {
     }
 
     render() {
-        return(
+        return (
             <Box>
                 <h3>
                     {this.props.content}
@@ -36,7 +38,6 @@ class ResultBox extends Component {
                 <MiniBox color='#7dc791'>Rätt svar: {this.props.correct}</MiniBox>
                 <MiniBox color='red'>Fel svar: {this.props.wrong}</MiniBox>
                 <MiniBox color='gray'>Ej svarat: {this.props.unanswered}</MiniBox>
-
             </Box>
         )
     }

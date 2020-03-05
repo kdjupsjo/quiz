@@ -10,6 +10,10 @@ class Timer extends Component {
     }
 
     componentDidMount() {
+        this.setup();
+    }
+
+    setup() {
         this.myInterval = setInterval(() => {
             const { seconds } = this.state
 
@@ -43,7 +47,10 @@ class Timer extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.myInterval)
+        this.clearInterval();
+    }
+    clearInterval() {
+        clearInterval(this.myInterval);
     }
 
     render() {

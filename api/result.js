@@ -4,7 +4,7 @@ var results =
             range: 
             {
                 min: 0,
-                max: 40 
+                max: 39 
             },
             content: "Det var rätt kasst, bättre kan du"
         },
@@ -12,7 +12,7 @@ var results =
             range: 
             {
                 min: 40,
-                max: 80 
+                max: 79 
             },
             content: "Helt okej"
         },
