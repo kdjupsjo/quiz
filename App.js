@@ -38,9 +38,11 @@ class App extends Component {
   componentDidMount() {
     this.init();
   };
-
+  //Initalize quizz 
   init() {
+    //Shuffle all questions and load 10 of them
     const shuffledQuestions = _.shuffle(quizQuestions).slice(0, 10);
+    //Shuffle all question alternatives
     const shuffledAnswerOptions = shuffledQuestions.map((question) => _.shuffle(question.answers));
 
     this.setState({
@@ -57,6 +59,7 @@ class App extends Component {
   };
 
   nextQuestion() {
+    //Increment counter to move to next question
     const counter = this.state.counter + 1;
     const activeQuestions = this.state.activeQuestions;
     const answerId = this.state.answer;
@@ -68,20 +71,25 @@ class App extends Component {
     this.timer.current.reset();
 
     if (counter <= activeQuestions.length) {
+      //store result
       if (this.state.answer == '') {
+        //Unansered
         unAnsweredCount++;
       } else {
+        // Find question with id
         const answer = _.find(this.state.answerOptions, function (answer) {
           return answer.id == answerId;
         });
-
+        // Correct
         if (answer.type == 'true') {
           correctAnswerCount++;
         }
+        // Wrong
         if (answer.type == 'false') {
           wrongAnswerCount++;
         }
       }
+      // Check if answered question is the last one, then finish...
       if (counter == activeQuestions.length) {
         this.setState({
           correctAnswerCount: correctAnswerCount,
@@ -91,6 +99,7 @@ class App extends Component {
         }, this.finishQuiz);
 
       } else {
+        //... or move to next question
         this.setState({
           correctAnswerCount: correctAnswerCount,
           wrongAnswerCount: wrongAnswerCount,
@@ -106,12 +115,13 @@ class App extends Component {
 
   finishQuiz() {
     this.timer.current.clearInterval();
+    // Find score quota
     let finalscore = Math.floor((this.state.correctAnswerCount / this.state.activeQuestions.length) * 100);
     if (finalscore == 0) {
       finalscore++;
     }
     let finalResult = '';
-
+    //Find right result with the quota
     _.forEach(results, function (result) {
       if (result.range.min < finalscore && finalscore <= result.range.max) {
         finalResult = result.content;
@@ -130,6 +140,7 @@ class App extends Component {
     }
 
     let answerOptions = this.state.answerOptions;
+    //Store correct answer so we don't accidently remove it
     let correctAnswer = _.find(answerOptions, function (answer) {
       return answer.type == "true";
     });
@@ -142,6 +153,7 @@ class App extends Component {
     rand = this.getRandomInt(answerOptions.length);
     answerOptions.splice(rand, 1);
 
+    //add correct answer again and shuffle
     answerOptions.push(correctAnswer);
     answerOptions = _.shuffle(answerOptions);
 
